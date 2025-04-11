@@ -1,0 +1,58 @@
+Surge规则合并工具 - 打包说明
+=========================
+
+要将此工具打包成可分发的Windows应用，请按照以下步骤操作：
+
+1. 准备工作
+------------
+确保以下文件都存在于同一个文件夹中：
+- index.html (主HTML文件)
+- script.js (JavaScript逻辑)
+- styles.css (样式表)
+- 启动Surge规则合并工具.bat (启动脚本)
+- README.md (说明文件)
+- package.json (应用配置)
+
+2. 创建分发包
+------------
+a) 简易方式：
+   - 将整个文件夹打包为ZIP文件
+   - 用户解压后双击"启动Surge规则合并工具.bat"即可使用
+   
+b) 专业方式 (需要Node.js环境)：
+   - 安装Node.js (https://nodejs.org/)
+   - 安装Electron打包工具：npm install -g electron-packager
+   - 在命令行中运行：electron-packager . "Surge规则合并工具" --platform=win32 --arch=x64 --icon=icon.ico
+   - 分发生成的文件夹给用户
+
+3. 自定义图标
+------------
+如果要使用自定义图标，准备一个icon.ico文件放在文件夹中，
+然后在专业打包方式中指定此图标。
+
+4. 打包内容清单
+------------
+确保打包时包含以下文件：
+- index.html
+- script.js
+- styles.css
+- README.md
+- 启动Surge规则合并工具.bat
+
+5. 技术细节
+------------
+此应用使用纯HTML、CSS和JavaScript编写，通过bat脚本以应用程序模式
+启动浏览器呈现界面，无需安装额外软件即可运行。
+
+6. 兼容性
+------------
+- 支持Windows 7及以上系统
+- 需要安装现代浏览器(Edge, Chrome或Firefox)
+- 如果没有安装上述浏览器，将使用系统默认浏览器打开
+
+7. 故障排除
+------------
+如果用户反馈启动失败：
+- 确认是否安装了浏览器
+- 尝试直接打开index.html文件
+- 检查文件编码是否为UTF-8 

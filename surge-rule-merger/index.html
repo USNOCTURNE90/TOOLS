@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surge规则合并工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Surge规则合并工具</h1>
+        <div class="description">
+            <p>将多个规则集合并，自动去除重复项和优化重叠规则。</p>
+        </div>
+        
+        <!-- 操作按钮区 -->
+        <div class="buttons">
+            <button id="merge-btn">合并规则</button>
+            <button id="clear-btn">清空</button>
+            <button id="example-btn">加载示例</button>
+            
+            <div class="sort-options">
+                <label>排序方式：</label>
+                <select id="sort-method">
+                    <option value="none">不排序</option>
+                    <option value="domain" selected>按域名分组</option>
+                    <option value="alpha">按首字母排序</option>
+                    <option value="ip">IP按数字大小排序</option>
+                </select>
+                <button id="apply-sort">应用排序</button>
+            </div>
+        </div>
+        
+        <!-- 左右两栏布局 - 只包含输入和输出 -->
+        <div class="layout-container">
+            <!-- 左侧栏 - 输入区域 -->
+            <div class="left-column">
+                <div class="section-title">
+                    <span>输入规则</span>
+                    <span class="stats-mini" id="original-count-mini">0 条规则</span>
+                </div>
+                <div class="input-area">
+                    <div class="code-container active-section">
+                        <div class="line-numbers" id="input-line-numbers"></div>
+                        <textarea id="input-rules" placeholder="请粘贴Surge规则，每行一条..."></textarea>
+                        <div class="scroll-indicator">滚动查看更多</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧栏 - 输出区域 -->
+            <div class="right-column">
+                <div class="section-title">
+                    <span>合并后的规则</span>
+                    <span class="stats-mini" id="merged-count-mini">0 条规则</span>
+                </div>
+                <div class="output-area">
+                    <div class="code-container output-container">
+                        <div class="line-numbers" id="output-line-numbers"></div>
+                        <textarea id="output-rules" readonly placeholder="合并后的规则将显示在这里..."></textarea>
+                        <div class="scroll-indicator">滚动查看更多</div>
+                    </div>
+                    <div class="buttons">
+                        <button id="copy-btn">复制到剪贴板</button>
+                        <button id="download-btn">下载规则文件</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 全宽合并详情区域 -->
+        <div class="full-width-detail">
+            <div class="section-title">
+                <span>合并详情</span>
+                <span class="stats-mini" id="removed-count-mini">已移除 0 条规则</span>
+            </div>
+            <div class="detail-area">
+                <div class="detail-container">
+                    <div id="detail-output" class="detail-output"></div>
+                    <div class="scroll-indicator">滚动查看更多</div>
+                    <div class="detail-hint">点击任意被移除的规则可将其恢复到结果中</div>
+                </div>
+                <div class="buttons">
+                    <button id="copy-detail-btn">复制详情</button>
+                    <button id="clear-detail-btn">清空详情</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 统计信息 -->
+        <div class="stats">
+            <div id="original-count">原始规则数量: 0</div>
+            <div id="merged-count">合并后规则数量: 0</div>
+            <div id="removed-count">移除重复/重叠规则数量: 0</div>
+        </div>
+        
+        <!-- 底部信息 -->
+        <div class="info">
+            <h3>支持的规则类型</h3>
+            <ul>
+                <li>域名规则: DOMAIN, DOMAIN-SUFFIX, DOMAIN-KEYWORD</li>
+                <li>IP规则: IP-CIDR, IP-CIDR6, GEOIP</li>
+                <li>其他规则类型也会保留，但可能不会进行优化合并</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

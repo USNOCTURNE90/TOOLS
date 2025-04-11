@@ -1,0 +1,33 @@
+/* 被移除的规则样式 */
+.removed-rule {
+    color: #e74c3c;
+    cursor: pointer;
+    text-decoration: line-through;
+    margin: 2px 0;
+    padding: 2px 5px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.removed-rule:hover {
+    background-color: #ffeeee;
+    text-decoration: none;
+    position: relative;
+}
+
+.removed-rule:hover::after {
+    content: "点击恢复此规则";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+} 
